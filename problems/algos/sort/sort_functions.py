@@ -8,6 +8,17 @@ Contains various sort functions
 
 positive_infinity = float("inf")
 
+def bubble_sort(A):
+    print('bubble_sort incoming Array {}'.format(A))
+    for i in range(0, len(A)-2):
+        for j in range(len(A)-1, i, -1):
+            if (A[j] < A[j-1]):
+                t = A[j]
+                A[j] = A[j-1]
+                A[j-1] = t
+    print('bubble_sort sorted Array {}'.format(A))
+        
+        
 def insertion_sort(A):
     print('insertion_sort incoming Array {}'.format(A))
     for i in range(1, len(A)):
