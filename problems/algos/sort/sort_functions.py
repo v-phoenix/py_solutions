@@ -66,4 +66,45 @@ def __merge(A,p,q,r):
             j = j+1        
                         
                 
+
+def heap_sort(A):
+    print('heap sort incoming array {}'.format(A));
+    B, heap_size = build_max_heap(A);
+    for i in range(len(B)-1, 0, -1):
+        temp = B[i];
+        B[i] = B[0];
+        B[0] = temp;
+        heap_size = heap_size - 1;
+        max_heapify(B,0,heap_size);
         
+    print('heap sort sorted array {}'.format(B));    
+
+def max_heapify(A, i, heap_size):
+    
+    l = (2 * i) + 1;
+    r = (2 * i) + 2;
+        
+    largest = i;
+    
+    if(l <= heap_size and A[l] > A[i]):
+        largest = l;
+    
+    if( r <= heap_size and A[r] > A[largest]):
+        largest = r;
+    
+    if(largest != i):
+        temp = A[i];
+        A[i] = A[largest];
+        A[largest] = temp;
+        max_heapify(A, largest, heap_size);
+
+
+def build_max_heap(A):
+    heap_size = len(A)-1;
+    for i in range(heap_size//2, -1, -1):
+        max_heapify(A, i, heap_size);
+    
+    return A, heap_size;    
+    
+    
+    
