@@ -49,8 +49,18 @@ def heap_sort(A):
         heap_size = heap_size - 1;
         max_heapify(B,0,d,heap_size);
         
-    print('heap sort sorted array {}'.format(B));    
+    print('heap sort sorted array {}'.format(B));
 
+def quick_sort(A):
+    print('quick sort incoming array {}'.format(A));
+    __quicksort(A, 0, len(A) -1);
+    print('quick sort sorted array {}'.format(A));    
+
+def __quicksort(A, p , r):
+    if(p < r):
+        q = __quick_sort_partition(A, p, r);
+        __quicksort(A, p, q-1);
+        __quicksort(A, q+1, r);
 
 
 def __merge_sort_divide(A, p ,r):
@@ -105,7 +115,22 @@ def build_max_heap(A, d):
     for i in range(heap_size//d, -1, -1):
         max_heapify(A,i,d,heap_size);
     
-    return A, heap_size;    
+    return A, heap_size;
+
+
+def __quick_sort_partition(A, p , r):
+    i = p - 1;
+    x = A[r];
+    for j in range(p, r):
+        if(A[j] <= x):
+            i = i+1;
+            temp = A[i];
+            A[i] = A[j];
+            A[j] = temp;
+    t = A[i+1];
+    A[i+1] = A[r];
+    A[r] = t;
+    return i+1;
     
     
     
